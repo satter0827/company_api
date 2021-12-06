@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-" Visual Studio compiled
+# Visual Studio compiled
 .vscode/
+
+# local_settings
+local_settings.py
