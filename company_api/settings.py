@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_api',
     'rest_framework',
+    'import_export',
 ]
 
 ROOT_URLCONF = 'company_api.urls'
@@ -132,6 +133,13 @@ STATIC_URL = '/static/'
 #]
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# pagenation
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20
+}
 
 # local settings
 

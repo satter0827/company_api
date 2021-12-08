@@ -3,11 +3,6 @@ from django.db.models.query_utils import check_rel_lookup_compatibility
 from django.utils.translation import TranslatorCommentWarning
 
 class Company(models.Model):
-    # 企業名,企業名（英語）,ホームページ,事業情報,エラー,pdf等,法人番号,都道府県名,市区町村名
-    # ,市区町村名以下,所在地,本店所在地,設立年,設立月,設立年月,資本金_現在,正社員数_現在
-    # ,売上高_直近,営業利益_直近,株式公開 公開時期,株式公開 上場市場名,主力製品サービス関連技術分野コード
-    # ,主力製品サービス関連技術分野,主力製品サービス供給形態コード,サービス供給形態
-
     name = models.CharField(max_length=64)
     name_english = models.CharField(max_length=64)
     url = models.URLField()
@@ -17,7 +12,6 @@ class Company(models.Model):
     company_num = models.IntegerField()
     prefacture = models.CharField(max_length=64)
     city = models.CharField(max_length=64)
-    town = models.CharField(max_length=64)
     address_etc = models.CharField(max_length=64)
     location = models.CharField(max_length=64)
     head_office_address = models.CharField(max_length=64)
@@ -34,5 +28,11 @@ class Company(models.Model):
     technology_field = models.CharField(max_length=64)
     service_supply_code = models.IntegerField()
     service_supply = models.CharField(max_length=64)
+
+    def get_list(self):
+        return [self.name, self.name_english, self.url, self.business_information, self.error, self.pdf_etc, self.company_num,self.prefacture,
+        self.city, self.address_etc, self.location, self.head_office_address, self.year_of_establishment, self.month_of_establishment,
+        self.date_of_establishment, self.capital, self.full_time_employees, self.net_sales, self.operating_income, self.offering_period,
+        self.listed_market_name, self.technology_code, self.technology_field, self.service_supply_code, self.service_supply]
 
 

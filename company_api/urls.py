@@ -20,4 +20,5 @@ from main_api.urls import router as api_router
 urlpatterns = [
     url('admin/', admin.site.urls),
     url('main_api/', include(api_router.urls)),
+    url('main_api/', include('main_api.urls')),
 ]

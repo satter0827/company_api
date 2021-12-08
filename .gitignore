@@ -133,3 +133,6 @@ dmypy.json
 
 # local_settings
 local_settings.py
+
+# testcode
+csv_upload.bat
