@@ -14,23 +14,10 @@ class CompanySerializer(serializers.ModelSerializer):
 
     def save_csv(csv_data):
         df = pd.read_csv(csv_data, header=0, sep=",", encoding="cp932")
-
-        df['法人番号'] = df['法人番号'].fillna(0)
-        df['設立年'] = df['設立年'].fillna(0)
-        df['設立月'] = df['設立月'].fillna(0)
-        df['設立年月'] = df['設立年月'].fillna(0)
-        df['資本金_現在'] = df['資本金_現在'].fillna(0)
-        df['正社員数_現在'] = df['正社員数_現在'].fillna(0)
-        df['売上高_直近'] = df['売上高_直近'].fillna(0)
-        df['営業利益_直近'] = df['営業利益_直近'].fillna(0)
-        df['株式公開 公開時期'] = df['株式公開 公開時期'].fillna(0)
-        df['株式公開 公開時期'] = df['株式公開 公開時期'].fillna(0)
-        df['主力製品サービス関連技術分野コード'] = df['主力製品サービス関連技術分野コード'].fillna(0)
-        df['主力製品サービス供給形態コード'] = df['主力製品サービス供給形態コード'].fillna(0)
         df = df.fillna("")
 
         company_list = []
-        Company.objects.all().delete()
+
         for _, row in df.iterrows():
             company =  Company()
 
@@ -62,7 +49,5 @@ class CompanySerializer(serializers.ModelSerializer):
 
             company_list.append(company)
 
-            company.save()
-
-        #Company.objects.all().delete()
-        #Company.objects.bulk_create(company_list)
+        Company.objects.all().delete()
+        Company.objects.bulk_create(company_list)
