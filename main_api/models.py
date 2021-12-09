@@ -6,7 +6,7 @@ class Company(models.Model):
     name = models.CharField(max_length=64)
     name_english = models.CharField(max_length=64)
     url = models.URLField()
-    business_information = models.CharField(max_length=1024)
+    business_information = models.CharField(max_length=8192)
     error = models.CharField(max_length=64)
     pdf_etc = models.CharField(max_length=2048)
     company_num = models.CharField(max_length=64)
