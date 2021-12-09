@@ -29,8 +29,6 @@ class CompanySerializer(serializers.ModelSerializer):
         df['主力製品サービス供給形態コード'] = df['主力製品サービス供給形態コード'].fillna(0)
         df = df.fillna("")
 
-        Company.objects.all().delete()
-
         company_list = []
 
         for _, row in df.iterrows():
@@ -63,5 +61,6 @@ class CompanySerializer(serializers.ModelSerializer):
             company.service_supply = row[24]
 
             company_list.append(company)
-
+            
+        Company.objects.all().delete()
         Company.objects.bulk_create(company_list)
