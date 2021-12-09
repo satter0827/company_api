@@ -8,7 +8,7 @@ class Company(models.Model):
     url = models.URLField()
     business_information = models.CharField(max_length=1024)
     error = models.CharField(max_length=64)
-    pdf_etc = models.CharField(max_length=128)
+    pdf_etc = models.CharField(max_length=1024)
     company_num = models.CharField(max_length=64)
     prefacture = models.CharField(max_length=64)
     city = models.CharField(max_length=64)
