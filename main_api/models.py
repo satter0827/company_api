@@ -4,7 +4,7 @@ from django.utils.translation import TranslatorCommentWarning
 
 class Company(models.Model):
     name = models.CharField(max_length=64)
-    name_english = models.CharField(max_length=64)
+    name_english = models.CharField(max_length=256)
     url = models.URLField()
     business_information = models.CharField(max_length=1024)
     error = models.CharField(max_length=64)
