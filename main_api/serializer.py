@@ -11,6 +11,11 @@ class CompanySerializer(serializers.ModelSerializer):
         , 'technology_code', 'technology_field', 'service_supply_code', 'service_supply')
 
 class ResultSerializer(serializers.ModelSerializer):
+    target = CompanySerializer()
+    suggest_1 = CompanySerializer()
+    suggest_2 = CompanySerializer()
+    suggest_3 = CompanySerializer()
+
     class Meta:
         model = Result
         fields = ('result_id', 'target', 'suggest_1', 'suggest_2', 'suggest_3')

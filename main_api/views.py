@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from rest_framework import viewsets, views
 from rest_framework.response import Response
-
 from .models import Company, Result
 from .serializer import CompanySerializer, ResultSerializer
 from django.http import HttpResponse
+from rest_framework.permissions import IsAuthenticated
+
 import csv
 
 class CompanyViewSet(viewsets.ModelViewSet):
@@ -13,8 +14,11 @@ class CompanyViewSet(viewsets.ModelViewSet):
 
   queryset = Company.objects.all()
   serializer_class = CompanySerializer
+  permission_classes = [IsAuthenticated]
 
 class CompanyCsvView(views.APIView):
+  permission_classes = [IsAuthenticated]
+
   def get(self, request):
     response = HttpResponse(content_type='text/csv; charset=utf-8')
     response['Content-Disposition'] = 'attachment; filename=CompanysData_info.csv'
@@ -39,8 +43,11 @@ class ResultViewSet(viewsets.ModelViewSet):
 
   queryset = Result.objects.all()
   serializer_class = ResultSerializer
+  permission_classes = [IsAuthenticated]
 
 class ResultCsvView(views.APIView):
+  permission_classes = [IsAuthenticated]
+  
   def get(self, request):
     response = HttpResponse(content_type='text/csv; charset=utf-8')
     response['Content-Disposition'] = 'attachment; filename=ResultsData_info.csv'

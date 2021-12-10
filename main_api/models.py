@@ -86,8 +86,7 @@ class Company(models.Model):
         Company.objects.bulk_create(company_list)
 
 class Result(models.Model):
-    RESULT_COLUMN_LIST = ["UUID", "ターゲット", "提案1", "提案2", "提案3"
-        ]
+    RESULT_COLUMN_LIST = ["UUID", "ターゲット", "提案1", "提案2", "提案3"]
 
     result_id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False, db_index=True)
     target = models.ForeignKey(Company, on_delete=models.CASCADE)
@@ -96,7 +95,7 @@ class Result(models.Model):
     suggest_3 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_3")
 
     def get_list(self):
-        return [self.target, self.suggest_1, self.suggest_2, self.suggest_3]
+        return [self.result_id, self.target, self.suggest_1, self.suggest_2, self.suggest_3]
 
     def save_csv(csv_data):
         df = pd.read_csv(csv_data, header=0, sep=",", encoding="cp932")
