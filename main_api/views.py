@@ -2,13 +2,15 @@ from django.shortcuts import render
 from rest_framework import viewsets, views
 from rest_framework.response import Response
 
-from .models import Company
-from .serializer import CompanySerializer
-from .consts import *
+from .models import Company, Result
+from .serializer import CompanySerializer, ResultSerializer
 from django.http import HttpResponse
 import csv
 
 class CompanyViewSet(viewsets.ModelViewSet):
+  class META:
+    lookup_field = 'company_id'
+
   queryset = Company.objects.all()
   serializer_class = CompanySerializer
 
@@ -19,7 +21,7 @@ class CompanyCsvView(views.APIView):
 
     writer = csv.writer(response)
 
-    writer.writerow(CSV_COLUMN_LIST)
+    writer.writerow(Company.COMPANY_COLUMN_LIST)
     
     for company in Company.objects.all():
         writer.writerow(company.get_list())
@@ -27,6 +29,32 @@ class CompanyCsvView(views.APIView):
     return response
 
   def post(self, request):
-    CompanySerializer.save_csv(request.data['csv_file'])
+    Company.save_csv(request.data['csv_file'])
+
+    return Response("OK")
+
+class ResultViewSet(viewsets.ModelViewSet):
+  class META:
+    lookup_field = 'result_id'
+
+  queryset = Result.objects.all()
+  serializer_class = ResultSerializer
+
+class ResultCsvView(views.APIView):
+  def get(self, request):
+    response = HttpResponse(content_type='text/csv; charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename=ResultsData_info.csv'
+
+    writer = csv.writer(response)
+
+    writer.writerow(Result.RESULT_COLUMN_LIST)
+    
+    for result in Result.objects.all():
+        writer.writerow(result.get_list())
+
+    return response
+
+  def post(self, request):
+    Result.save_csv(request.data['csv_file'])
 
     return Response("OK")
