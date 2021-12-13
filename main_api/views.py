@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from .models import Company, Result
 from .serializer import CompanySerializer, ResultSerializer
 from django.http import HttpResponse
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 import csv
 
@@ -14,10 +14,10 @@ class CompanyViewSet(viewsets.ModelViewSet):
 
   queryset = Company.objects.all()
   serializer_class = CompanySerializer
-  permission_classes = [IsAuthenticated]
+  permission_classes = [IsAuthenticatedOrReadOnly]
 
 class CompanyCsvView(views.APIView):
-  permission_classes = [IsAuthenticated]
+  permission_classes = [IsAuthenticatedOrReadOnly]
 
   def get(self, request):
     response = HttpResponse(content_type='text/csv; charset=utf-8')
@@ -43,10 +43,10 @@ class ResultViewSet(viewsets.ModelViewSet):
 
   queryset = Result.objects.all()
   serializer_class = ResultSerializer
-  permission_classes = [IsAuthenticated]
+  permission_classes = [IsAuthenticatedOrReadOnly]
 
 class ResultCsvView(views.APIView):
-  permission_classes = [IsAuthenticated]
+  permission_classes = [IsAuthenticatedOrReadOnly]
   
   def get(self, request):
     response = HttpResponse(content_type='text/csv; charset=utf-8')
