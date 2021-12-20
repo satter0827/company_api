@@ -106,10 +106,10 @@ class Result(models.Model):
         for _, row in df.iterrows():
             result =  Result()
 
-            result.target = Company(company_id=row[0])
-            result.suggest_1 = Company(company_id=row[1])
-            result.suggest_2 = Company(company_id=row[2])
-            result.suggest_3 = Company(company_id=row[3])
+            result.target = Company(company_id=row[0], db_column='target')
+            result.suggest_1 = Company(company_id=row[1], db_column='suggest_1')
+            result.suggest_2 = Company(company_id=row[2], db_column='suggest_2')
+            result.suggest_3 = Company(company_id=row[3], db_column='suggest_3')
 
             result_list.append(result)
 
