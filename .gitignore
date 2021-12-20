@@ -136,3 +136,7 @@ local_settings.py
 
 # testcode
 csv_upload.bat
+
+# testdata
+data/CompanysData_info.csv
+data/ResultsData_info.csv

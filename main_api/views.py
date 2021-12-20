@@ -17,7 +17,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
   permission_classes = [IsAuthenticatedOrReadOnly]
 
 class CompanyCsvView(views.APIView):
-  #permission_classes = [IsAuthenticatedOrReadOnly]
+  permission_classes = [IsAuthenticatedOrReadOnly]
 
   def get(self, request):
     response = HttpResponse(content_type='text/csv; charset=utf-8')
@@ -46,7 +46,7 @@ class ResultViewSet(viewsets.ModelViewSet):
   permission_classes = [IsAuthenticatedOrReadOnly]
 
 class ResultCsvView(views.APIView):
-  #permission_classes = [IsAuthenticatedOrReadOnly]
+  permission_classes = [IsAuthenticatedOrReadOnly]
   
   def get(self, request):
     response = HttpResponse(content_type='text/csv; charset=utf-8')
