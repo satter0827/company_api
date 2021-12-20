@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ['*']
 
 # CSS設定
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_api',
     'rest_framework',
+    'corsheaders',
     'import_export',
 ]
 
@@ -155,6 +157,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 20
 }
+
+# cors settings
+
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:8080'
+]
 
 # local settings
 
