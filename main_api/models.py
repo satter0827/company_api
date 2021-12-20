@@ -90,9 +90,9 @@ class Result(models.Model):
 
     result_id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False, db_index=True)
     target = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="target", db_column='target')
-    suggest_1 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_1", db_column='suggest_1')
-    suggest_2 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_2", db_column='suggest_2')
-    suggest_3 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_3", db_column='suggest_3')
+    suggest_1 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="suggest_1", db_column='suggest_1')
+    suggest_2 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="suggest_2", db_column='suggest_2')
+    suggest_3 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="suggest_3", db_column='suggest_3')
 
     def get_list(self):
         return [self.result_id, self.target, self.suggest_1, self.suggest_2, self.suggest_3]
