@@ -89,10 +89,10 @@ class Result(models.Model):
     RESULT_COLUMN_LIST = ["UUID", "ターゲット", "提案1", "提案2", "提案3"]
 
     result_id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False, db_index=True)
-    target = models.ForeignKey(Company, on_delete=models.CASCADE)
-    suggest_1 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_1")
-    suggest_2 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_2")
-    suggest_3 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_3")
+    target = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="target", db_column='target')
+    suggest_1 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_1", db_column='suggest_1')
+    suggest_2 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_2", db_column='suggest_2')
+    suggest_3 = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="sugest_3", db_column='suggest_3')
 
     def get_list(self):
         return [self.result_id, self.target, self.suggest_1, self.suggest_2, self.suggest_3]
@@ -106,10 +106,10 @@ class Result(models.Model):
         for _, row in df.iterrows():
             result =  Result()
 
-            result.target = Company(company_id=row[0], db_column='target')
-            result.suggest_1 = Company(company_id=row[1], db_column='suggest_1')
-            result.suggest_2 = Company(company_id=row[2], db_column='suggest_2')
-            result.suggest_3 = Company(company_id=row[3], db_column='suggest_3')
+            result.target = Company(company_id=row[0])
+            result.suggest_1 = Company(company_id=row[1])
+            result.suggest_2 = Company(company_id=row[2])
+            result.suggest_3 = Company(company_id=row[3])
 
             result_list.append(result)
 
